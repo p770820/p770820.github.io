@@ -55,7 +55,7 @@
   padding-bottom: 40px;
   color: gray;
 }
-.items {
+.about .item-group {
   width: 1200px;
   margin: auto;
   display: flex;
@@ -64,7 +64,7 @@
     如果他給了 width :1200px 視窗縮小 會出現 水平卷軸
    */
 }
-.item {
+.about .item-group .item {
   text-align: center;
 
   /* border: 1px solid #666; */
@@ -73,17 +73,82 @@
   margin: 10px;
 }
 
-.items .item img {
+.about .item-group .item img {
   width: 50%;
   /* 圖片如何置中? */
   /* text-align: center; */
 }
 
-.items .item h3 {
+.about .item-group .item h3 {
   margin: 20px;
   color: gray;
 }
 
-.items .item p {
+.about .item-group .item p {
   margin: 20px;
+}
+
+.course {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.course .item-group {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course .item-group .item {
+  width: 368px;
+  border: 1px solid gray;
+  margin: 15px;
+}
+
+.course .item-group .item img {
+  width: 100%;
+}
+
+.course .item-group .item .info {
+  padding: 10px;
+}
+
+.course .item-group .item .info span {
+    margin: 5px;
+}
+
+.course .item-group .item .info span.red {
+    background-color: red;
+}
+
+.course .item-group .item .info span.gray {
+    background-color: gray;
+}
+
+.course .item-group .item .info h3 {
+    margin: 5px;
+}
+
+.course .item-group .item .info p {
+    margin: 5px;
+}
+
+.course .item-group .item .info hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.course .more {
+  width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 30px;
+}
+
+.course .more .more-button {
+  color: white;
+  background-color: red;
+  width: 300px;
+  height: 70px;
 }
