@@ -4,4 +4,28 @@
   line-height: none;
 }
 
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
 
+.header .logo{
+    display: flex;
+
+    /* 文字 重直置中 沒效過 */
+    /* vertical-align: middle; */
+}
+
+.header .logo img{
+    padding: 20px;
+}
+
+.header .menu ul{
+    display: flex;
+    list-style: none;
+}
+
+.header .menu ul li{
+    margin: 10px;
+}
