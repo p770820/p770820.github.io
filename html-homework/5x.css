@@ -4,40 +4,86 @@
   line-height: none;
 }
 
-.header{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  /* 這個有卷軸下拉 還是置頂的功能?? */
 }
 
-.header .logo{
-    display: flex;
+.header .logo {
+  display: flex;
 
-    /* 文字 重直置中 沒效過 */
-    /* vertical-align: middle; */
+  /* 文字 重直置中 沒效過 */
+  /* vertical-align: middle; */
 }
 
-.header .logo img{
-    padding: 20px;
+.header .logo img {
+  padding: 20px;
 }
 
-.header .menu ul{
-    display: flex;
-    list-style: none;
+.header .menu ul {
+  display: flex;
+  list-style: none;
 }
 
-.header .menu ul li{
-    margin: 10px;
+.header .menu ul li {
+  margin: 10px;
 }
-
 
 .main-picture {
-    width: 100%;
-    display:flex;
+  width: 100%;
+  display: flex;
 }
 
-.main-picture img{
-    width: 100%;
-    border: 0px solid black;
-    /* 百之百寬的圖片 加border會有 水平的捲軸 */
+.main-picture img {
+  width: 100%;
+  border: 0px solid black;
+  /* 百之百寬的圖片 加border會有 水平的捲軸 */
+}
+
+.about {
+  background-color: #f7f7f7;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.main-title {
+  width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 40px;
+  color: gray;
+}
+.items {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* 如果 width: 100% 他沒有辦法置中 
+    如果他給了 width :1200px 視窗縮小 會出現 水平卷軸
+   */
+}
+.item {
+  text-align: center;
+
+  /* border: 1px solid #666; */
+  width: 260px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.items .item img {
+  width: 50%;
+  /* 圖片如何置中? */
+  /* text-align: center; */
+}
+
+.items .item h3 {
+  margin: 20px;
+  color: gray;
+}
+
+.items .item p {
+  margin: 20px;
 }
