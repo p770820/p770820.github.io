@@ -16,11 +16,17 @@
   display: flex;
 
   /* 文字 重直置中 沒效過 */
-  /* vertical-align: middle; */
+  /* vertical-align: middle;  */
+  align-items: center; 
 }
 
 .header .logo img {
   padding: 20px;
+}
+
+.header .menu {
+  display: flex;
+  align-items: center; 
 }
 
 .header .menu ul {
@@ -50,7 +56,7 @@
   padding-bottom: 40px;
 }
 .main-title {
-  width: 1200px;
+  /* width: 1200px; */
   margin: auto;
   text-align: center;
   padding-bottom: 40px;
@@ -187,12 +193,12 @@
 }
 
 .understand {
-  width: 100%;
+  /* width: 100%; */
   padding-top: 40px;
   padding-bottom: 40px;
 }
 
-.understand .understand-content{
+.understand .understand-content {
   text-align: center;
 }
 
@@ -201,4 +207,55 @@
   height: 100px;
   border-radius: 50%;
   margin: 15px;
+}
+
+footer {
+  width: 100%;
+  background-color: #f7f7f7;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.footer {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer .contact {
+  width: 400px;
+}
+
+.footer .contact img{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footer .contact p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.footer .menu {
+  width: 780px;
+  margin: 10px;
+  display: flex;
+}
+
+.footer .menu ul{
+  list-style: none;
+  width: 16%;
+}
+
+.footer .menu li{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footer .copyright {
+  border-top: 1px solid gray;
+  padding: 10px;
+  width: 1200px;
+  text-align: center;
 }
