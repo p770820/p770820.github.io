@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  line-height: none;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  /* 這個有卷軸下拉 還是置頂的功能?? */
+}
+
+.header .logo {
+  display: flex;
+
+  /* 文字 重直置中 沒效過 */
+  /* vertical-align: middle;  */
+  align-items: center; 
+}
+
+.header .logo img {
+  padding: 20px;
+}
+
+.header .menu {
+  display: flex;
+  align-items: center; 
+}
+
+.header .menu ul {
+  display: flex;
+  list-style: none;
+}
+
+.header .menu ul li {
+  margin: 10px;
+}
+
+.main-picture {
+  width: 100%;
+  display: flex;
+}
+
+.main-picture img {
+  width: 100%;
+  border: 0px solid black;
+  /* 百之百寬的圖片 加border會有 水平的捲軸 */
+}
+
+.about {
+  width: 100%;
+  background-color: #f7f7f7;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.main-title {
+  /* width: 1200px; */
+  margin: auto;
+  text-align: center;
+  padding-bottom: 40px;
+  color: gray;
+}
+.about .item-group {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  /* 如果 width: 100% 他沒有辦法置中 
+    如果他給了 width :1200px 視窗縮小 會出現 水平卷軸
+   */
+}
+.about .item-group .item {
+  text-align: center;
+
+  /* border: 1px solid #666; */
+  width: 260px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.about .item-group .item img {
+  width: 50%;
+  /* 圖片如何置中? */
+  /* text-align: center; */
+}
+
+.about .item-group .item h3 {
+  margin: 20px;
+  color: gray;
+}
+
+.about .item-group .item p {
+  margin: 20px;
+}
+
+.course {
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.course .item-group {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.course .item-group .item {
+  width: 368px;
+  border: 1px solid gray;
+  margin: 15px;
+}
+
+.course .item-group .item img {
+  width: 100%;
+}
+
+.course .item-group .item .info {
+  padding: 10px;
+}
+
+.course .item-group .item .info span {
+  margin: 5px;
+}
+
+.course .item-group .item .info span.red {
+  background-color: red;
+}
+
+.course .item-group .item .info span.gray {
+  background-color: gray;
+}
+
+.course .item-group .item .info h3 {
+  margin: 5px;
+}
+
+.course .item-group .item .info p {
+  margin: 5px;
+}
+
+.course .item-group .item .info hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.course .more {
+  width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 30px;
+}
+
+.course .more .more-button {
+  color: white;
+  background-color: red;
+  width: 300px;
+  height: 70px;
+}
+
+.recommend {
+  width: 100%;
+  background-color: #f7f7f7;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.recommend .recommend-person {
+  width: 800px;
+  margin: auto;
+  display: flex;
+  padding: 30px;
+}
+
+.recommend .recommend-person img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 15px;
+}
+
+.recommend .recommend-person .recommend-person-into p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.recommend .recommend-person .recommend-person-into p.name {
+  color: red;
+  font-size: 28px;
+}
+
+.understand {
+  /* width: 100%; */
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.understand .understand-content {
+  text-align: center;
+}
+
+.understand .understand-content img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 15px;
+}
+
+footer {
+  width: 100%;
+  background-color: #f7f7f7;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.footer {
+  width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer .contact {
+  width: 400px;
+}
+
+.footer .contact img{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footer .contact p {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.footer .menu {
+  width: 780px;
+  margin: 10px;
+  display: flex;
+}
+
+.footer .menu ul{
+  list-style: none;
+  width: 16%;
+}
+
+.footer .menu li{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.footer .copyright {
+  border-top: 1px solid gray;
+  padding: 10px;
+  width: 1200px;
+  text-align: center;
+}
