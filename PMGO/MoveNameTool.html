@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon 招式排列組合</title>
+  </head>
+
+  <h1>Pokemon 招式排列組合</h1>
+  <p>
+    參考網站 :
+    <a
+      href="https://pokemon.gameinfo.io/zh-tw/pokemon/list/best-pokemon-by-cp"
+      target="_blank"
+      >PM GO Info</a
+    >
+  </p>
+
+  <p>Pokemon Name</p>
+  <input id="pmName" style="width: 100%" />
+  <p>小招</p>
+  <textarea id="txtQuickMove" rows="5" style="width: 100%"></textarea>
+  <p>大招</p>
+  <textarea id="txtMainMove" rows="5" style="width: 100%"></textarea>
+
+  <p></p>
+  <button id="btnExecute" onclick="execute()">執行</button>
+
+  <p>reuslt</p>
+  <textarea id="txtResult" rows="100" style="width: 100%"></textarea>
+  <body>
+    <script>
+      function execute() {
+        var pmName = document.getElementById("pmName").value;
+        var quickMove = document
+          .getElementById("txtQuickMove")
+          .value.replace(/\r\n/g, "\n")
+          .split("\n");
+        var mainMove = document
+          .getElementById("txtMainMove")
+          .value.replace(/\r\n/g, "\n")
+          .split("\n");
+
+        //var quickMove = ["電光一閃", "金屬爪", "火焰牙", "大聲咆"];
+        //var mainMove = ["鐵頭", "嬉鬧", "近身戰", "瘋狂伏特"];
+        var result = [];
+        quickMove.forEach((q) => {
+          mainMove.forEach((m) => {
+            // result.push(
+            //   pmName.replace(/\s|[.]|[-]/g, "") +
+            //     " - " +
+            //     q.replace(/\s|\d|[.]|[-]/g, "") +
+            //     " " +
+            //     m.replace(/\s|\d|[.]|[-]/g, "")
+            // );
+            document.getElementById("txtResult").value +=
+              pmName.replace(/\s|[.]|[-]/g, "") +
+              " - " +
+              q.replace(/\s|\d|[.]|[-]/g, "") +
+              " " +
+              m.replace(/\s|\d|[.]|[-]/g, "") +
+              "\r\n";
+          });
+        });
+
+        var copyText = document.getElementById("txtResult");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+      }
+    </script>
+  </body>
+</html>
