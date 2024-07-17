@@ -65,3 +65,7 @@
 65. ForAver No.65 女優攝影會 之 青空光
 66. ForAver No.66 女優攝影會 之 小那海あや(小那海綾)
 67. ForAver No.67 女優攝影會 之 兒玉七海
+68. ForAver No.68 女優攝影會 之 石川澪
+69. ForAver No.69 女優攝影會 之 森日向子
+70. ForAver No.70 女優攝影會 之 藤森里穗
+71. ForAver No.71 女優攝影會 之 宮下玲奈
