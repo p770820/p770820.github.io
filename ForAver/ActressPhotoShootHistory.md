@@ -69,7 +69,17 @@
 69. ForAver No.69 女優攝影會 之 森日向子
 70. ForAver No.70 女優攝影會 之 藤森里穗
 71. ForAver No.71 女優攝影會 之 宮下玲奈
-72. Foraver No.1  尊榮會     之 涼森れむ(涼森玲夢)
+72. Foraver No.72 女優攝影會 (No.1  尊榮會) 之 涼森れむ(涼森玲夢)
 73. ForAver No.73 女優攝影會 之 椎名ゆな(椎名由奈)
 74. ForAver No.74 女優攝影會 之 早坂ひめ(早坂姬)
-75. ForAver No.75 女優攝影會 之 
+75. ForAver No.75 女優攝影會 之 七瀨愛麗絲
+76. ForAver No.76 女優攝影會 之 北野未奈
+77. ForAver No.77 女優攝影會 之 長濱蜜璃
+
+---------------------------------------------
+## 大尺
+
+2. [ForAver No.1 大尺見面會 之 松本梨穂](http://www.playno1.com/article-41264-1.html)
+1. [ForAVer大尺見面會 No.2！白石もも(白石桃)](http://www.playno1.com/article-41859-1.html)
+
+女優Club 
