@@ -61,7 +61,7 @@
         setTimeout(() => {
           window.open(url, '_blank');
           status.textContent = `已下載 ${i + 1}/${dates.length} 個檔案`;
-        }, i * 1000); // 每個下載間隔 1 秒
+        }, 2000); // 每個下載間隔 1 秒
       }
     });
   </script>
