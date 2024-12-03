@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Timeline KML Downloader</title>
+</head>
+<body>
+  <h1>Google Timeline KML Downloader</h1>
+  <form id="timelineForm">
+    <label for="fromDate">開始日期 (YYYY-MM-DD):</label>
+    <input type="date" id="fromDate" required>
+    <br><br>
+    <label for="toDate">結束日期 (YYYY-MM-DD):</label>
+    <input type="date" id="toDate" required>
+    <br><br>
+    <button type="submit">開始下載</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    document.getElementById('timelineForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const fromDate = document.getElementById('fromDate').value;
+      const toDate = document.getElementById('toDate').value;
+
+      if (!fromDate || !toDate) {
+        alert('請輸入開始與結束日期！');
+        return;
+      }
+
+      const from = new Date(fromDate);
+      const to = new Date(toDate);
+
+      if (from > to) {
+        alert('開始日期不能晚於結束日期！');
+        return;
+      }
+
+      // 計算日期範圍
+      const dates = [];
+      for (let d = from; d <= to; d.setDate(d.getDate() + 1)) {
+        dates.push(new Date(d).toISOString().split('T')[0]); // YYYY-MM-DD 格式
+      }
+
+      // 狀態更新
+      const status = document.getElementById('status');
+      status.textContent = `即將下載 ${dates.length} 個檔案...`;
+
+      // 延遲下載
+      for (let i = 0; i < dates.length; i++) {
+        const date = new Date(dates[i]);
+        const year = date.getFullYear();
+        const month0 = date.getMonth(); // 0-indexed month
+        const day = date.getDate();
+        const url = `https://timeline.google.com/maps/timeline/kml?authuser=0&pb=!1m8!1m3!1i${year}!2i${month0}!3i${day}!2m3!1i${year}!2i${month0}!3i${day}`;
+
+        // 開啟新視窗下載
+        setTimeout(() => {
+          window.open(url, '_blank');
+          status.textContent = `已下載 ${i + 1}/${dates.length} 個檔案`;
+        }, i * 1000); // 每個下載間隔 1 秒
+      }
+    });
+  </script>
+</body>
+</html>
