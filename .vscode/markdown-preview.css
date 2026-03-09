@@ -1,0 +1,15 @@
+body, .markdown-body, table, td, th, p, li, span {
+  font-family:
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
+    "Segoe UI",
+    sans-serif !important;
+}
+
+code, pre {
+  font-family:
+    Consolas,
+    "Courier New",
+    monospace !important;
+}
