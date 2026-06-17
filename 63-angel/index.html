@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>63第三次公演 IG 連結</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f2ee;
+      --panel: #ffffff;
+      --text: #201a1e;
+      --muted: #6f626a;
+      --line: #e7dce2;
+      --accent: #cf2e75;
+      --accent-dark: #8f2357;
+      --gold: #c8962c;
+      --shadow: 0 14px 36px rgba(70, 43, 56, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(207, 46, 117, 0.16), transparent 34rem),
+        linear-gradient(135deg, #fbf8f5 0%, var(--bg) 48%, #f4eef6 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 56px;
+    }
+
+    header {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow {
+      color: var(--accent-dark);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4.35rem);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .summary span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 30px 0;
+    }
+
+    .search {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+      font: inherit;
+      padding: 10px 14px;
+      outline: none;
+      box-shadow: 0 8px 22px rgba(70, 43, 56, 0.06);
+    }
+
+    .search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(207, 46, 117, 0.14);
+    }
+
+    .clear {
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--accent-dark);
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      padding: 0 16px;
+    }
+
+    main {
+      display: grid;
+      gap: 28px;
+    }
+
+    section {
+      padding-top: 2px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      margin: 0;
+      letter-spacing: 0;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 0.92rem;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .person {
+      display: grid;
+      gap: 10px;
+      min-height: 118px;
+      padding: 14px;
+      border: 1px solid rgba(231, 220, 226, 0.95);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      font-size: 1.06rem;
+    }
+
+    .avatar {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .name span:last-child {
+      overflow-wrap: anywhere;
+    }
+
+    .links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .ig {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      width: 100%;
+      border-radius: 8px;
+      background: #201a1e;
+      color: #fff;
+      font-size: 0.93rem;
+      font-weight: 800;
+      line-height: 1.2;
+      padding: 9px 12px;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .ig::before {
+      content: "";
+      flex: 0 0 16px;
+      width: 16px;
+      height: 16px;
+      border: 2px solid currentColor;
+      border-radius: 5px;
+      box-shadow: inset 0 0 0 3px #201a1e;
+    }
+
+    .ig:hover,
+    .ig:focus-visible {
+      background: var(--accent-dark);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .empty {
+      display: none;
+      padding: 28px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.66);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .empty.show {
+      display: block;
+    }
+
+    footer {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 34px;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding-top: 28px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .clear {
+        width: 100%;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="eyebrow">63ANGEL / Instagram</p>
+      <h1>63第三次公演 IG 連結</h1>
+      <p class="summary">
+        <span>全部連結會開新分頁</span>
+        <span id="total-count">0 個 IG 連結</span>
+        <span>適合直接放到 GitHub Pages</span>
+      </p>
+    </header>
+
+    <div class="toolbar">
+      <input class="search" id="search" type="search" placeholder="搜尋名字或 IG 帳號" autocomplete="off">
+      <button class="clear" id="clear" type="button">清除</button>
+    </div>
+
+    <main id="content"></main>
+    <p class="empty" id="empty">沒有符合的項目</p>
+
+    <footer>Source: 63第三次公演.txt</footer>
+  </div>
+
+  <script>
+    const groups = [
+      {
+        title: "出演者",
+        people: [
+          ["amo", ["https://www.instagram.com/amo_spark_/"]],
+          ["anzu", ["https://www.instagram.com/anzu_burlesque/"]],
+          ["conan", ["https://www.instagram.com/conan_burlesque_yavay/"]],
+          ["dc sora", ["https://www.instagram.com/sora_burlesque"]],
+          ["futaba", ["https://www.instagram.com/futaba_burlesque/"]],
+          ["fuyuka", ["https://www.instagram.com/fuyuka_burlesque/"]],
+          ["ibuki", ["https://www.instagram.com/ibuki_burlesque"]],
+          ["ichigo", ["https://www.instagram.com/ichigo_63angel/"]],
+          ["jun po", ["https://www.instagram.com/jun_partyon?igsh=MXJ5dnE2bTV3OTBoeQ%3D%3D"]],
+          ["kana", ["https://www.instagram.com/kana_burlesque?igsh=OHUwZDViNWp5dTk%3D"]],
+          ["kanao", ["https://www.instagram.com/kanao_churasun6?igsh=MTV6OTdyaTk3eXpuNQ%3D%3D"]],
+          ["kurumi", ["https://www.instagram.com/kurumi_burlesque/"]],
+          ["lian", ["https://www.instagram.com/lian_spark/"]],
+          ["maika", ["https://www.instagram.com/maika_burlesque?igsh=MWN1NjF5NXQ3b3dieg%3D%3D"]],
+          ["michiru", ["https://www.instagram.com/michiru_burlesque_yavay?igsh=MWk2dWFmdTV3aGk2ag%3D%3D"]],
+          ["mii", ["https://www.instagram.com/mii_churasun6/"]],
+          ["milan po", ["https://www.instagram.com/milan_partyon?igsh=MW0wc2t0dTZ3N2JoYQ%3D%3D"]],
+          ["mizusu", ["https://www.instagram.com/misuzu_burlesque?igsh=eDNtcHBoemNvcmh3"]],
+          ["ranka", ["https://www.instagram.com/ran_pukupoko?igsh=anlhcXVvcmI2Z3B2", "https://www.instagram.com/ranka_burlesque/"]],
+          ["remi", ["https://www.instagram.com/remi_burlesque/"]],
+          ["mitsuri", ["https://www.instagram.com/mitsuri_burlesque?igsh=MTFsZW12aWI3eG02dg%3D%3D"]],
+          ["moka", ["https://www.instagram.com/mokamaru_spark/"]],
+          ["osuzu", ["https://www.instagram.com/osuzu_spark?igsh=MW9nMW05a29rYnZ5aQ%3D%3D"]],
+          ["puni", ["https://www.instagram.com/puni_burlesque?igsh=MWd6aWlmaHY5cjIyYw%3D%3D"]],
+          ["ruu", ["https://www.instagram.com/ruu_burlesque/"]],
+          ["sena", ["https://www.instagram.com/se_na.017/"]],
+          ["uta", ["https://www.instagram.com/utatanee_zzz/"]],
+          ["yui", ["https://www.instagram.com/yui_blq/"]],
+          ["waco", ["https://www.instagram.com/waco.141.partyon/"]]
+        ]
+      },
+      {
+        title: "工作人員 / 相關人士",
+        people: [
+          ["kz8", ["https://www.instagram.com/kz8_kazuya/"]],
+          ["kuroto", ["https://www.instagram.com/kuroto6_burlesque/"]],
+          ["ryota", ["https://www.instagram.com/ryota_burlesque/"]],
+          ["ville", ["https://www.instagram.com/ville_photovideo/"]],
+          ["mcman", ["https://www.instagram.com/mcman_burlesque_ppopgen/"]],
+          ["miku", ["https://www.instagram.com/miku_burlesquestaff/"]],
+          ["toshi", ["https://www.instagram.com/toshi_superspark/"]],
+          ["台灣相關人士", ["https://www.instagram.com/izumirin0124/"]],
+          ["ellenabtaiwn", ["https://www.instagram.com/ellenabtaiwn/"]]
+        ]
+      },
+      {
+        title: "粉絲",
+        people: [
+          ["oli.vxrse", ["https://www.instagram.com/oli.vxrse/"]],
+          ["steven79327", ["https://www.instagram.com/steven79327/"]],
+          ["kw_chen16.tw", ["https://www.instagram.com/kw_chen16.tw/"]],
+          ["huei_63y", ["https://www.instagram.com/huei_63y/"]],
+          ["puton_burlesque", ["https://www.instagram.com/puton_burlesque/"]],
+          ["likebeer6666", ["https://www.instagram.com/likebeer6666/"]],
+          ["drift_king_lin", ["https://www.instagram.com/drift_king_lin/"]],
+          ["tobyflower4387", ["https://www.instagram.com/tobyflower4387/"]],
+          ["killua6429", ["https://www.instagram.com/killua6429/"]],
+          ["hao_00_1111", ["https://www.instagram.com/hao_00_1111/"]],
+          ["a2c_burlesque", ["https://www.instagram.com/a2c_burlesque/"]],
+          ["ryousei0202_kurumi", ["https://www.instagram.com/ryousei0202_kurumi/"]],
+          ["mike_burlesque", ["https://www.instagram.com/mike_burlesque/"]],
+          ["nikka_0629", ["https://www.instagram.com/nikka_0629/"]],
+          ["susuchan_burlesque", ["https://www.instagram.com/susuchan_burlesque/"]],
+          ["tp6cl4u4", ["https://www.instagram.com/tp6cl4u4/"]],
+          ["jamie130528", ["https://www.instagram.com/jamie130528/"]],
+          ["eddie__photos", ["https://www.instagram.com/eddie__photos/"]],
+          ["lion07_29", ["https://www.instagram.com/lion07_29/"]],
+          ["kiryu_blq", ["https://www.instagram.com/kiryu_blq/"]],
+          ["leo_da0808", ["https://www.instagram.com/leo_da0808/"]],
+          ["y.rrr1212", ["https://www.instagram.com/y.rrr1212/"]],
+          ["ruka_tu", ["https://www.instagram.com/ruka_tu/"]],
+          ["wen_li_1010", ["https://www.instagram.com/wen_li_1010/"]],
+          ["wrg726", ["https://www.instagram.com/wrg726/"]],
+          ["g10568", ["https://www.instagram.com/g10568/"]],
+          ["hane_burlesque_fans", ["https://www.instagram.com/hane_burlesque_fans/"]],
+          ["jayway_63angel_tw.fans", ["https://www.instagram.com/jayway_63angel_tw.fans/"]],
+          ["tomoya_burlesque", ["https://www.instagram.com/tomoya_burlesque/"]],
+          ["ilsnsdgg", ["https://www.instagram.com/ilsnsdgg/"]],
+          ["mikey_12.17", ["https://www.instagram.com/mikey_12.17/"]],
+          ["shinohara243", ["https://www.instagram.com/shinohara243/"]],
+          ["kikiciti", ["https://www.instagram.com/kikiciti/"]]
+        ]
+      },
+      {
+        title: "女粉",
+        people: [
+          ["sakurawillbloom", ["https://www.instagram.com/sakurawillbloom/"]],
+          ["kikihsu0721_fans", ["https://www.instagram.com/kikihsu0721_fans/"]],
+          ["chao_2m", ["https://www.instagram.com/chao_2m/"]],
+          ["happy44558p", ["https://www.instagram.com/happy44558p/"]],
+          ["k589536", ["https://www.instagram.com/k589536/"]],
+          ["jun69._", ["https://www.instagram.com/jun69._/"]],
+          ["chene_mi", ["https://www.instagram.com/chene_mi/"]]
+        ]
+      }
+    ];
+
+    const content = document.querySelector("#content");
+    const search = document.querySelector("#search");
+    const clear = document.querySelector("#clear");
+    const empty = document.querySelector("#empty");
+    const totalCount = document.querySelector("#total-count");
+
+    function getHandle(url) {
+      const path = new URL(url).pathname.replace(/^\/|\/$/g, "");
+      return path || url;
+    }
+
+    function makeInitial(name) {
+      const trimmed = name.trim();
+      return trimmed ? trimmed.slice(0, 1) : "@";
+    }
+
+    function render() {
+      const query = search.value.trim().toLowerCase();
+      let visiblePeople = 0;
+      let linkTotal = 0;
+      content.innerHTML = "";
+
+      groups.forEach((group) => {
+        const matches = group.people.filter(([name, links]) => {
+          linkTotal += links.length;
+          const text = `${name} ${links.map(getHandle).join(" ")}`.toLowerCase();
+          return !query || text.includes(query);
+        });
+
+        if (!matches.length) return;
+        visiblePeople += matches.length;
+
+        const section = document.createElement("section");
+        section.innerHTML = `
+          <div class="section-head">
+            <h2>${group.title}</h2>
+            <span class="count">${matches.length} 筆</span>
+          </div>
+          <div class="grid"></div>
+        `;
+
+        const grid = section.querySelector(".grid");
+        matches.forEach(([name, links]) => {
+          const article = document.createElement("article");
+          article.className = "person";
+          article.innerHTML = `
+            <div class="name">
+              <span class="avatar">${makeInitial(name)}</span>
+              <span>${name}</span>
+            </div>
+            <div class="links"></div>
+          `;
+
+          const linksBox = article.querySelector(".links");
+          links.forEach((url) => {
+            const anchor = document.createElement("a");
+            anchor.className = "ig";
+            anchor.href = url;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+            anchor.textContent = `@${getHandle(url)}`;
+            linksBox.append(anchor);
+          });
+
+          grid.append(article);
+        });
+
+        content.append(section);
+      });
+
+      totalCount.textContent = `${linkTotal} 個 IG 連結`;
+      empty.classList.toggle("show", visiblePeople === 0);
+    }
+
+    search.addEventListener("input", render);
+    clear.addEventListener("click", () => {
+      search.value = "";
+      search.focus();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
