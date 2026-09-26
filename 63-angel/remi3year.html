@@ -129,6 +129,127 @@
       border-color: var(--accent);
     }
 
+    .manager {
+      margin: -12px 0 32px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 8px 22px rgba(70, 43, 56, 0.05);
+    }
+
+    .manager summary {
+      padding: 14px 16px;
+      color: var(--accent-dark);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .manager-body {
+      display: grid;
+      gap: 16px;
+      padding: 2px 16px 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .manager-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .account-form {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.7fr) minmax(240px, 1.3fr) auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 44px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      background: #fff;
+      font: inherit;
+      font-weight: 400;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(217, 54, 124, 0.12);
+    }
+
+    .form-buttons,
+    .backup-buttons,
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .manage-button {
+      min-height: 40px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--accent-dark);
+      background: #fff;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .manage-button.primary {
+      min-height: 44px;
+      border-color: var(--accent);
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .manage-button.danger {
+      color: #9d2c3a;
+    }
+
+    .manage-button:hover,
+    .manage-button:focus-visible {
+      border-color: currentColor;
+    }
+
+    .form-message {
+      min-height: 1.4em;
+      margin: 0;
+      color: var(--visited-dark);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .form-message.error {
+      color: #a52d3c;
+    }
+
+    .file-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
     main {
       display: grid;
       gap: 32px;
@@ -249,6 +370,16 @@
       content: "✓";
     }
 
+    .card-actions {
+      justify-content: flex-end;
+    }
+
+    .card-actions .manage-button {
+      min-height: 34px;
+      padding: 6px 10px;
+      font-size: 0.82rem;
+    }
+
     .empty {
       display: none;
       margin: 0;
@@ -278,6 +409,10 @@
       }
 
       .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .account-form {
         grid-template-columns: 1fr;
       }
 
@@ -314,6 +449,35 @@
       >
       <button class="clear" id="clear-search" type="button">清除搜尋</button>
     </div>
+
+    <details class="manager" id="manager">
+      <summary>新增或管理自訂帳號</summary>
+      <div class="manager-body">
+        <p class="manager-note">
+          自訂帳號只會保存在這個瀏覽器。名稱可留空；IG 網址也可直接輸入 @帳號。
+        </p>
+        <form class="account-form" id="account-form">
+          <label class="field">
+            顯示名稱（選填）
+            <input id="account-name" type="text" maxlength="100" placeholder="例如：新朋友">
+          </label>
+          <label class="field">
+            Instagram 網址或帳號
+            <input id="account-url" type="text" required placeholder="https://www.instagram.com/example/ 或 @example">
+          </label>
+          <div class="form-buttons">
+            <button class="manage-button primary" id="save-account" type="submit">新增帳號</button>
+            <button class="manage-button" id="cancel-edit" type="button" hidden>取消編輯</button>
+          </div>
+        </form>
+        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        <div class="backup-buttons">
+          <button class="manage-button" id="export-accounts" type="button">匯出自訂帳號</button>
+          <button class="manage-button" id="import-accounts" type="button">匯入 JSON 備份</button>
+          <input class="file-input" id="import-file" type="file" accept="application/json,.json">
+        </div>
+      </div>
+    </details>
 
     <main id="content"></main>
     <p class="empty" id="empty">找不到符合搜尋條件的帳號。</p>
@@ -414,7 +578,8 @@
       }
     ];
 
-    const storageKey = "remi3year.visited.v1";
+    const visitedStorageKey = "remi3year.visited.v1";
+    const customStorageKey = "remi3year.custom-accounts.v1";
     const content = document.querySelector("#content");
     const search = document.querySelector("#search");
     const clearSearch = document.querySelector("#clear-search");
@@ -422,28 +587,142 @@
     const totalCount = document.querySelector("#total-count");
     const resultCount = document.querySelector("#result-count");
     const visitedCount = document.querySelector("#visited-count");
+    const manager = document.querySelector("#manager");
+    const accountForm = document.querySelector("#account-form");
+    const accountName = document.querySelector("#account-name");
+    const accountUrl = document.querySelector("#account-url");
+    const saveAccount = document.querySelector("#save-account");
+    const cancelEdit = document.querySelector("#cancel-edit");
+    const formMessage = document.querySelector("#form-message");
+    const exportAccounts = document.querySelector("#export-accounts");
+    const importAccounts = document.querySelector("#import-accounts");
+    const importFile = document.querySelector("#import-file");
 
     function getHandle(url) {
-      return new URL(url).pathname.replace(/^\/+|\/+$/g, "");
+      return new URL(url).pathname.replace(/^\/+|\/+$/g, "").toLocaleLowerCase();
     }
+
+    function normalizeInstagramInput(value) {
+      let input = value.trim();
+      if (!input) throw new Error("請輸入 Instagram 網址或帳號。");
+
+      if (input.startsWith("@")) input = input.slice(1);
+      if (/^[a-zA-Z0-9._]{1,30}$/.test(input)) {
+        return `https://www.instagram.com/${input.toLocaleLowerCase()}/`;
+      }
+
+      if (/^(?:www\.)?instagram\.com\//i.test(input)) input = `https://${input}`;
+
+      let parsed;
+      try {
+        parsed = new URL(input);
+      } catch {
+        throw new Error("Instagram 網址或帳號格式不正確。");
+      }
+
+      const hostname = parsed.hostname.toLocaleLowerCase();
+      if (hostname !== "instagram.com" && !hostname.endsWith(".instagram.com")) {
+        throw new Error("請輸入 Instagram 的網址。");
+      }
+
+      const handle = parsed.pathname.split("/").filter(Boolean)[0]?.toLocaleLowerCase() || "";
+      const reservedPaths = new Set(["accounts", "direct", "explore", "p", "reel", "reels", "stories"]);
+      if (!/^[a-z0-9._]{1,30}$/.test(handle) || reservedPaths.has(handle)) {
+        throw new Error("網址中找不到有效的 Instagram 帳號。");
+      }
+      return `https://www.instagram.com/${handle}/`;
+    }
+
+    function makeId() {
+      if (globalThis.crypto?.randomUUID) return crypto.randomUUID();
+      return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    const builtInHandles = new Set(
+      groups.flatMap((group) => group.people.map(([, url]) => getHandle(url)))
+    );
 
     function getStoredVisited() {
       try {
-        const stored = JSON.parse(sessionStorage.getItem(storageKey));
+        const stored = JSON.parse(sessionStorage.getItem(visitedStorageKey));
         return new Set(Array.isArray(stored) ? stored : []);
       } catch {
         return new Set();
       }
     }
 
+    function getStoredCustomAccounts() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(customStorageKey));
+        if (!Array.isArray(stored)) return [];
+
+        const seen = new Set(builtInHandles);
+        const valid = [];
+        stored.forEach((item) => {
+          if (!item || typeof item.url !== "string") return;
+          try {
+            const url = normalizeInstagramInput(item.url);
+            const handle = getHandle(url);
+            if (seen.has(handle)) return;
+            seen.add(handle);
+            valid.push({
+              id: typeof item.id === "string" && item.id ? item.id : makeId(),
+              name: typeof item.name === "string" && item.name.trim() ? item.name.trim().slice(0, 100) : handle,
+              url
+            });
+          } catch {
+            // Ignore malformed records instead of breaking the whole page.
+          }
+        });
+        return valid;
+      } catch {
+        return [];
+      }
+    }
+
     const visited = getStoredVisited();
+    const customAccounts = getStoredCustomAccounts();
+    let editingId = null;
 
     function saveVisited() {
       try {
-        sessionStorage.setItem(storageKey, JSON.stringify([...visited]));
+        sessionStorage.setItem(visitedStorageKey, JSON.stringify([...visited]));
       } catch {
         // The page remains usable when storage is unavailable.
       }
+    }
+
+    function saveCustomAccounts() {
+      try {
+        localStorage.setItem(customStorageKey, JSON.stringify(customAccounts));
+        return true;
+      } catch {
+        setMessage("瀏覽器無法保存資料；本次開啟頁面時仍可使用。", true);
+        return false;
+      }
+    }
+
+    function getAllGroups() {
+      if (!customAccounts.length) return groups;
+      return [
+        ...groups,
+        {
+          title: "自行新增的帳號",
+          people: customAccounts.map(({ name, url, id }) => [name, url, id])
+        }
+      ];
+    }
+
+    function setMessage(message, isError = false) {
+      formMessage.textContent = message;
+      formMessage.classList.toggle("error", isError);
+    }
+
+    function resetForm() {
+      editingId = null;
+      accountForm.reset();
+      saveAccount.textContent = "新增帳號";
+      cancelEdit.hidden = true;
     }
 
     function makeInitial(name) {
@@ -452,10 +731,43 @@
     }
 
     function updateVisitedCount() {
-      visitedCount.textContent = `已看過 ${visited.size} 個`;
+      const currentHandles = new Set(
+        getAllGroups().flatMap((group) => group.people.map(([, url]) => getHandle(url)))
+      );
+      const currentVisited = [...visited].filter((handle) => currentHandles.has(handle)).length;
+      visitedCount.textContent = `已看過 ${currentVisited} 個`;
     }
 
-    function makePerson(name, url) {
+    function beginEdit(id) {
+      const account = customAccounts.find((item) => item.id === id);
+      if (!account) return;
+      editingId = id;
+      accountName.value = account.name;
+      accountUrl.value = account.url;
+      saveAccount.textContent = "儲存修改";
+      cancelEdit.hidden = false;
+      manager.open = true;
+      setMessage(`正在編輯 @${getHandle(account.url)}`);
+      accountName.focus();
+    }
+
+    function deleteCustomAccount(id) {
+      const index = customAccounts.findIndex((item) => item.id === id);
+      if (index < 0) return;
+      const account = customAccounts[index];
+      const handle = getHandle(account.url);
+      if (!window.confirm(`確定要刪除 @${handle}？`)) return;
+
+      customAccounts.splice(index, 1);
+      visited.delete(handle);
+      saveVisited();
+      saveCustomAccounts();
+      if (editingId === id) resetForm();
+      render();
+      setMessage(`已刪除 @${handle}。`);
+    }
+
+    function makePerson(name, url, customId = null) {
       const handle = getHandle(url);
       const article = document.createElement("article");
       article.className = "person";
@@ -488,16 +800,37 @@
 
       nameBox.append(avatar, displayName);
       article.append(nameBox, link);
+
+      if (customId) {
+        const actions = document.createElement("div");
+        actions.className = "card-actions";
+
+        const editButton = document.createElement("button");
+        editButton.className = "manage-button";
+        editButton.type = "button";
+        editButton.textContent = "編輯";
+        editButton.addEventListener("click", () => beginEdit(customId));
+
+        const deleteButton = document.createElement("button");
+        deleteButton.className = "manage-button danger";
+        deleteButton.type = "button";
+        deleteButton.textContent = "刪除";
+        deleteButton.addEventListener("click", () => deleteCustomAccount(customId));
+
+        actions.append(editButton, deleteButton);
+        article.append(actions);
+      }
       return article;
     }
 
     function render() {
       const query = search.value.trim().toLocaleLowerCase();
-      const total = groups.reduce((sum, group) => sum + group.people.length, 0);
+      const allGroups = getAllGroups();
+      const total = allGroups.reduce((sum, group) => sum + group.people.length, 0);
       let visible = 0;
       content.replaceChildren();
 
-      groups.forEach((group) => {
+      allGroups.forEach((group) => {
         const matches = group.people.filter(([name, url]) => {
           const handle = getHandle(url);
           return !query || `${name} ${handle}`.toLocaleLowerCase().includes(query);
@@ -521,7 +854,7 @@
 
         const grid = document.createElement("div");
         grid.className = "grid";
-        matches.forEach(([name, url]) => grid.append(makePerson(name, url)));
+        matches.forEach(([name, url, customId]) => grid.append(makePerson(name, url, customId)));
 
         sectionHead.append(heading, count);
         section.append(sectionHead, grid);
@@ -533,6 +866,129 @@
       empty.classList.toggle("show", visible === 0);
       updateVisitedCount();
     }
+
+    accountForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      setMessage("");
+
+      let url;
+      try {
+        url = normalizeInstagramInput(accountUrl.value);
+      } catch (error) {
+        setMessage(error.message, true);
+        accountUrl.focus();
+        return;
+      }
+
+      const handle = getHandle(url);
+      const duplicateBuiltIn = builtInHandles.has(handle);
+      const duplicateCustom = customAccounts.some(
+        (item) => item.id !== editingId && getHandle(item.url) === handle
+      );
+      if (duplicateBuiltIn || duplicateCustom) {
+        setMessage(`@${handle} 已經在清單中。`, true);
+        accountUrl.focus();
+        return;
+      }
+
+      const name = accountName.value.trim().slice(0, 100) || handle;
+      if (editingId) {
+        const account = customAccounts.find((item) => item.id === editingId);
+        if (!account) return;
+        const oldHandle = getHandle(account.url);
+        account.name = name;
+        account.url = url;
+        if (oldHandle !== handle) {
+          visited.delete(oldHandle);
+          saveVisited();
+        }
+        saveCustomAccounts();
+        resetForm();
+        render();
+        setMessage(`已更新 @${handle}。`);
+        return;
+      }
+
+      customAccounts.push({ id: makeId(), name, url });
+      saveCustomAccounts();
+      resetForm();
+      render();
+      setMessage(`已新增 @${handle}。`);
+    });
+
+    cancelEdit.addEventListener("click", () => {
+      resetForm();
+      setMessage("已取消編輯。");
+    });
+
+    exportAccounts.addEventListener("click", () => {
+      if (!customAccounts.length) {
+        setMessage("目前沒有可匯出的自訂帳號。", true);
+        return;
+      }
+
+      const backup = {
+        version: 1,
+        exportedAt: new Date().toISOString(),
+        accounts: customAccounts.map(({ name, url }) => ({ name, url }))
+      };
+      const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
+      const downloadUrl = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = downloadUrl;
+      anchor.download = `remi3year-accounts-${new Date().toISOString().slice(0, 10)}.json`;
+      anchor.click();
+      setTimeout(() => URL.revokeObjectURL(downloadUrl), 0);
+      setMessage(`已匯出 ${customAccounts.length} 個自訂帳號。`);
+    });
+
+    importAccounts.addEventListener("click", () => importFile.click());
+    importFile.addEventListener("change", async () => {
+      const file = importFile.files?.[0];
+      if (!file) return;
+
+      try {
+        const parsed = JSON.parse(await file.text());
+        const accounts = Array.isArray(parsed) ? parsed : parsed?.accounts;
+        if (!Array.isArray(accounts)) throw new Error("備份內容格式不正確。");
+
+        const seen = new Set([
+          ...builtInHandles,
+          ...customAccounts.map((item) => getHandle(item.url))
+        ]);
+        let added = 0;
+        let skipped = 0;
+
+        accounts.forEach((item) => {
+          try {
+            if (!item || typeof item.url !== "string") throw new Error();
+            const url = normalizeInstagramInput(item.url);
+            const handle = getHandle(url);
+            if (seen.has(handle)) {
+              skipped += 1;
+              return;
+            }
+            seen.add(handle);
+            customAccounts.push({
+              id: makeId(),
+              name: typeof item.name === "string" && item.name.trim() ? item.name.trim().slice(0, 100) : handle,
+              url
+            });
+            added += 1;
+          } catch {
+            skipped += 1;
+          }
+        });
+
+        saveCustomAccounts();
+        render();
+        setMessage(`匯入完成：新增 ${added} 個，略過 ${skipped} 個。`);
+      } catch (error) {
+        setMessage(error.message || "無法讀取這份 JSON 備份。", true);
+      } finally {
+        importFile.value = "";
+      }
+    });
 
     search.addEventListener("input", render);
     clearSearch.addEventListener("click", () => {
