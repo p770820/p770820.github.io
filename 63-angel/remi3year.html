@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remi 3周年 IG Check List</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #fff7f9;
+      --panel: rgba(255, 255, 255, 0.92);
+      --text: #2d2027;
+      --muted: #75646e;
+      --line: #eadce3;
+      --accent: #d9367c;
+      --accent-dark: #982553;
+      --visited: #287a5a;
+      --visited-dark: #1d5c43;
+      --gold: #c99935;
+      --shadow: 0 12px 30px rgba(94, 48, 68, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(217, 54, 124, 0.16), transparent 30rem),
+        radial-gradient(circle at 95% 15%, rgba(201, 153, 53, 0.12), transparent 24rem),
+        linear-gradient(145deg, #fffdfc 0%, var(--bg) 52%, #f7f1f7 100%);
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 46px 0 56px;
+    }
+
+    header {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--accent-dark);
+      font-size: 0.86rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 6vw, 4.4rem);
+      line-height: 1.05;
+    }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .summary span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .summary .visited-total {
+      border-color: rgba(40, 122, 90, 0.3);
+      color: var(--visited-dark);
+      font-weight: 800;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin: 28px 0 32px;
+    }
+
+    .search,
+    .clear {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font: inherit;
+    }
+
+    .search {
+      width: 100%;
+      padding: 10px 15px;
+      outline: none;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 8px 22px rgba(70, 43, 56, 0.05);
+    }
+
+    .search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(217, 54, 124, 0.13);
+    }
+
+    .clear {
+      padding: 0 18px;
+      color: var(--accent-dark);
+      background: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .clear:hover,
+    .clear:focus-visible {
+      border-color: var(--accent);
+    }
+
+    main {
+      display: grid;
+      gap: 32px;
+    }
+
+    .group[hidden] {
+      display: none;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    }
+
+    .count {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .person {
+      display: grid;
+      gap: 12px;
+      align-content: space-between;
+      min-height: 122px;
+      padding: 14px;
+      border: 1px solid rgba(234, 220, 227, 0.96);
+      border-radius: 10px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .avatar {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 36px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--gold));
+      font-size: 0.92rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .display-name {
+      overflow-wrap: anywhere;
+    }
+
+    .ig {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 42px;
+      padding: 9px 12px;
+      border-radius: 9px;
+      color: #fff;
+      background: #2d2027;
+      font-size: 0.93rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-align: center;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .ig::before {
+      content: "↗";
+      flex: 0 0 auto;
+      font-size: 1rem;
+    }
+
+    .ig:hover,
+    .ig:focus-visible {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .ig.visited {
+      background: var(--visited);
+    }
+
+    .ig.visited:hover,
+    .ig.visited:focus-visible {
+      background: var(--visited-dark);
+    }
+
+    .ig.visited::before {
+      content: "✓";
+    }
+
+    .empty {
+      display: none;
+      margin: 0;
+      padding: 30px;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.68);
+      text-align: center;
+    }
+
+    .empty.show {
+      display: block;
+    }
+
+    footer {
+      margin-top: 36px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1120px);
+        padding-top: 28px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .clear {
+        width: 100%;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <p class="eyebrow">Remi 3rd Anniversary / Instagram</p>
+      <h1>Remi 3周年 IG Check List</h1>
+      <p class="summary" aria-live="polite">
+        <span id="total-count">共 0 個帳號</span>
+        <span id="result-count">顯示 0 個</span>
+        <span class="visited-total" id="visited-count">已看過 0 個</span>
+      </p>
+    </header>
+
+    <div class="toolbar">
+      <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="搜尋姓名、日文名稱或 IG 帳號"
+        aria-label="搜尋姓名、日文名稱或 IG 帳號"
+        autocomplete="off"
+      >
+      <button class="clear" id="clear-search" type="button">清除搜尋</button>
+    </div>
+
+    <main id="content"></main>
+    <p class="empty" id="empty">找不到符合搜尋條件的帳號。</p>
+
+    <footer>
+      點擊帳號會另開 Instagram，並在本次瀏覽器工作階段標示為已看過。
+    </footer>
+  </div>
+
+  <script>
+    const groups = [
+      {
+        title: "官方人員／可能的 Staff",
+        people: [
+          ["kuroto6_burlesque", "https://www.instagram.com/kuroto6_burlesque/"],
+          ["ryota_burlesque", "https://www.instagram.com/ryota_burlesque/"],
+          ["burlesque.tokyo", "https://www.instagram.com/burlesque.tokyo/"],
+          ["masahiro0508", "https://www.instagram.com/masahiro0508/"],
+          ["chiiiiii_63angelstaff", "https://www.instagram.com/chiiiiii_63angelstaff"]
+        ]
+      },
+      {
+        title: "9/24 れみ3周年イベント出演メンバー",
+        people: [
+          ["Ribo-san／りぼんさん", "https://www.instagram.com/ribon_burlesque/"],
+          ["Ibuki-san／いぶきさん", "https://www.instagram.com/ibuki_burlesque/"],
+          ["Miu-san／みうさん", "https://www.instagram.com/miu_burlesque/"],
+          ["Mone-san／もねさん", "https://www.instagram.com/mone_burlesque/"],
+          ["Beru-san／べるさん", "https://www.instagram.com/beru_burlesque/"],
+          ["Mitsuri-san／みつりさん", "https://www.instagram.com/mitsuri_burlesque/"],
+          ["Remi／れみ", "https://www.instagram.com/remi_burlesque/"],
+          ["Kanade-chan／かなでちゃん", "https://www.instagram.com/kanade_burlesque/"],
+          ["Kurumi-chan／くるみちゃん", "https://www.instagram.com/kurumi_burlesque/"],
+          ["Fuyuka-chan／ふゆかちゃん", "https://www.instagram.com/fuyuka_burlesque/"],
+          ["Maya-chan／まやちゃん", "https://www.instagram.com/maya_burlesque/"],
+          ["Retchan／れちちゃん", "https://www.instagram.com/leti_burlesque/"],
+          ["Miyata Shion／美谷朱音さん", "https://www.instagram.com/akanemitani0415/"],
+          ["るうさん", "https://www.instagram.com/ruu_burlesque/"],
+          ["かなちゃん", "https://www.instagram.com/kana_burlesque/"],
+          ["Ebisan／えびさん", "https://www.instagram.com/ebi_burlesque/"],
+          ["Yamato-san／やまとさん", "https://www.instagram.com/yamato_burlesque/"],
+          ["Kanami-chan／かなみちゃん", "https://www.instagram.com/kanami_burlesque/"],
+          ["Anzu-chan／あんずちゃん", "https://www.instagram.com/anzu_burlesque/"],
+          ["Riko-chan／りこちゃん", "https://www.instagram.com/riko_burlesque_/"],
+          ["Karina-chan／かりなちゃん", "https://www.instagram.com/karina_burlesque/"],
+          ["Rui-chan／るいちゃん", "https://www.instagram.com/rui_burlesque_/"],
+          ["Leona-san／れおなさん", "https://www.instagram.com/leona_partyon/"],
+          ["Karen-san／かれんさん", "https://www.instagram.com/karen_partyon/"],
+          ["Rena-san／れーなさん", "https://www.instagram.com/reina_partyon/"],
+          ["Rian-chan／りあんちゃん", "https://www.instagram.com/lian_spark/"],
+          ["えいかちゃん", "https://www.instagram.com/eika_spark/"],
+          ["さくちゃん", "https://www.instagram.com/saku_spark/"],
+          ["ひかりちゃん", "https://www.instagram.com/hikari_spark/"],
+          ["いなさん", "https://www.instagram.com/ina_partyon/"]
+        ]
+      },
+      {
+        title: "當天有拍影片的觀眾",
+        people: [
+          ["masaki03092022", "https://www.instagram.com/masaki03092022/"],
+          ["mike_burlesque", "https://www.instagram.com/mike_burlesque/"],
+          ["rets1223", "https://www.instagram.com/rets1223"],
+          ["sia1213___8", "https://www.instagram.com/sia1213___8/"],
+          ["miuuu_1216", "https://www.instagram.com/miuuu_1216/"],
+          ["midori_dorimi_", "https://www.instagram.com/midori_dorimi_/"],
+          ["uuuuu_yka", "https://www.instagram.com/uuuuu_yka/"],
+          ["steven79327", "https://www.instagram.com/steven79327/"],
+          ["jerry981119", "https://www.instagram.com/jerry981119/"],
+          ["ka_ni__21", "https://www.instagram.com/ka_ni__21/"],
+          ["w.i.n.g_0325", "https://www.instagram.com/w.i.n.g_0325/"],
+          ["yukiho63blqfan", "https://www.instagram.com/yukiho63blqfan/"],
+          ["roxy_9xo", "https://www.instagram.com/roxy_9xo/"],
+          ["sanagiman_burlesque", "https://www.instagram.com/sanagiman_burlesque/"],
+          ["k_n_k_n0083", "https://www.instagram.com/k_n_k_n0083/"],
+          ["new_yorker_tk", "https://www.instagram.com/new_yorker_tk/"],
+          ["yuuuic35", "https://www.instagram.com/yuuuic35/"],
+          ["iso_ti_ti", "https://www.instagram.com/iso_ti_ti/"],
+          ["shinji7140", "https://www.instagram.com/shinji7140/"],
+          ["pomshun0410", "https://www.instagram.com/pomshun0410/"],
+          ["chiiro4405", "https://www.instagram.com/chiiro4405/"],
+          ["anna____bls", "https://www.instagram.com/anna____bls/"],
+          ["sosan120657", "https://www.instagram.com/sosan120657/"],
+          ["michaeldream1221", "https://www.instagram.com/michaeldream1221/"],
+          ["kazupapa1021", "https://www.instagram.com/kazupapa1021/"],
+          ["teddyntada", "https://www.instagram.com/teddyntada/"],
+          ["dr.wtger_nightlife", "https://www.instagram.com/dr.wtger_nightlife/"],
+          ["_chinagon", "https://www.instagram.com/_chinagon/"],
+          ["been0314", "https://www.instagram.com/been0314/"],
+          ["ito__beyond", "https://www.instagram.com/ito__beyond/"],
+          ["mmry_1234", "https://www.instagram.com/mmry_1234/"],
+          ["doraneko_camera", "https://www.instagram.com/doraneko_camera/"],
+          ["ig_sushi_oniku", "https://www.instagram.com/ig_sushi_oniku/"],
+          ["katochan0519", "https://www.instagram.com/katochan0519/"],
+          ["nunu20260115", "https://www.instagram.com/nunu20260115/"],
+          ["gl.040507180616", "https://www.instagram.com/gl.040507180616/"],
+          ["maikakureni", "https://www.instagram.com/maikakureni/"]
+        ]
+      }
+    ];
+
+    const storageKey = "remi3year.visited.v1";
+    const content = document.querySelector("#content");
+    const search = document.querySelector("#search");
+    const clearSearch = document.querySelector("#clear-search");
+    const empty = document.querySelector("#empty");
+    const totalCount = document.querySelector("#total-count");
+    const resultCount = document.querySelector("#result-count");
+    const visitedCount = document.querySelector("#visited-count");
+
+    function getHandle(url) {
+      return new URL(url).pathname.replace(/^\/+|\/+$/g, "");
+    }
+
+    function getStoredVisited() {
+      try {
+        const stored = JSON.parse(sessionStorage.getItem(storageKey));
+        return new Set(Array.isArray(stored) ? stored : []);
+      } catch {
+        return new Set();
+      }
+    }
+
+    const visited = getStoredVisited();
+
+    function saveVisited() {
+      try {
+        sessionStorage.setItem(storageKey, JSON.stringify([...visited]));
+      } catch {
+        // The page remains usable when storage is unavailable.
+      }
+    }
+
+    function makeInitial(name) {
+      const trimmed = name.trim();
+      return trimmed ? trimmed.slice(0, 1) : "@";
+    }
+
+    function updateVisitedCount() {
+      visitedCount.textContent = `已看過 ${visited.size} 個`;
+    }
+
+    function makePerson(name, url) {
+      const handle = getHandle(url);
+      const article = document.createElement("article");
+      article.className = "person";
+
+      const nameBox = document.createElement("div");
+      nameBox.className = "name";
+
+      const avatar = document.createElement("span");
+      avatar.className = "avatar";
+      avatar.textContent = makeInitial(name);
+      avatar.setAttribute("aria-hidden", "true");
+
+      const displayName = document.createElement("span");
+      displayName.className = "display-name";
+      displayName.textContent = name;
+
+      const link = document.createElement("a");
+      link.className = "ig";
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = `@${handle}`;
+      link.classList.toggle("visited", visited.has(handle));
+      link.addEventListener("click", () => {
+        visited.add(handle);
+        link.classList.add("visited");
+        saveVisited();
+        updateVisitedCount();
+      });
+
+      nameBox.append(avatar, displayName);
+      article.append(nameBox, link);
+      return article;
+    }
+
+    function render() {
+      const query = search.value.trim().toLocaleLowerCase();
+      const total = groups.reduce((sum, group) => sum + group.people.length, 0);
+      let visible = 0;
+      content.replaceChildren();
+
+      groups.forEach((group) => {
+        const matches = group.people.filter(([name, url]) => {
+          const handle = getHandle(url);
+          return !query || `${name} ${handle}`.toLocaleLowerCase().includes(query);
+        });
+
+        if (!matches.length) return;
+        visible += matches.length;
+
+        const section = document.createElement("section");
+        section.className = "group";
+
+        const sectionHead = document.createElement("div");
+        sectionHead.className = "section-head";
+
+        const heading = document.createElement("h2");
+        heading.textContent = group.title;
+
+        const count = document.createElement("span");
+        count.className = "count";
+        count.textContent = `${matches.length} 個帳號`;
+
+        const grid = document.createElement("div");
+        grid.className = "grid";
+        matches.forEach(([name, url]) => grid.append(makePerson(name, url)));
+
+        sectionHead.append(heading, count);
+        section.append(sectionHead, grid);
+        content.append(section);
+      });
+
+      totalCount.textContent = `共 ${total} 個帳號`;
+      resultCount.textContent = `顯示 ${visible} 個`;
+      empty.classList.toggle("show", visible === 0);
+      updateVisitedCount();
+    }
+
+    search.addEventListener("input", render);
+    clearSearch.addEventListener("click", () => {
+      search.value = "";
+      search.focus();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
