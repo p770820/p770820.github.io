@@ -472,7 +472,8 @@
         </form>
         <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
         <div class="backup-buttons">
-          <button class="manage-button" id="export-accounts" type="button">匯出自訂帳號</button>
+          <button class="manage-button primary" id="export-all-accounts" type="button">匯出全部帳號</button>
+          <button class="manage-button" id="export-custom-accounts" type="button">僅匯出自訂帳號</button>
           <button class="manage-button" id="import-accounts" type="button">匯入 JSON 備份</button>
           <input class="file-input" id="import-file" type="file" accept="application/json,.json">
         </div>
@@ -594,7 +595,8 @@
     const saveAccount = document.querySelector("#save-account");
     const cancelEdit = document.querySelector("#cancel-edit");
     const formMessage = document.querySelector("#form-message");
-    const exportAccounts = document.querySelector("#export-accounts");
+    const exportAllAccounts = document.querySelector("#export-all-accounts");
+    const exportCustomAccounts = document.querySelector("#export-custom-accounts");
     const importAccounts = document.querySelector("#import-accounts");
     const importFile = document.querySelector("#import-file");
 
@@ -761,10 +763,10 @@
       customAccounts.splice(index, 1);
       visited.delete(handle);
       saveVisited();
-      saveCustomAccounts();
+      const saved = saveCustomAccounts();
       if (editingId === id) resetForm();
       render();
-      setMessage(`已刪除 @${handle}。`);
+      if (saved) setMessage(`已刪除 @${handle}。`);
     }
 
     function makePerson(name, url, customId = null) {
@@ -902,18 +904,18 @@
           visited.delete(oldHandle);
           saveVisited();
         }
-        saveCustomAccounts();
+        const saved = saveCustomAccounts();
         resetForm();
         render();
-        setMessage(`已更新 @${handle}。`);
+        if (saved) setMessage(`已更新 @${handle}。`);
         return;
       }
 
       customAccounts.push({ id: makeId(), name, url });
-      saveCustomAccounts();
+      const saved = saveCustomAccounts();
       resetForm();
       render();
-      setMessage(`已新增 @${handle}。`);
+      if (saved) setMessage(`已新增 @${handle}。`);
     });
 
     cancelEdit.addEventListener("click", () => {
@@ -921,25 +923,45 @@
       setMessage("已取消編輯。");
     });
 
-    exportAccounts.addEventListener("click", () => {
-      if (!customAccounts.length) {
-        setMessage("目前沒有可匯出的自訂帳號。", true);
-        return;
-      }
-
+    function downloadAccounts(accounts, scope) {
       const backup = {
         version: 1,
+        scope,
         exportedAt: new Date().toISOString(),
-        accounts: customAccounts.map(({ name, url }) => ({ name, url }))
+        accounts
       };
       const blob = new Blob([JSON.stringify(backup, null, 2)], { type: "application/json" });
       const downloadUrl = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = downloadUrl;
-      anchor.download = `remi3year-accounts-${new Date().toISOString().slice(0, 10)}.json`;
+      anchor.download = `remi3year-${scope}-accounts-${new Date().toISOString().slice(0, 10)}.json`;
       anchor.click();
       setTimeout(() => URL.revokeObjectURL(downloadUrl), 0);
-      setMessage(`已匯出 ${customAccounts.length} 個自訂帳號。`);
+      setMessage(`已匯出 ${accounts.length} 個帳號。`);
+    }
+
+    exportAllAccounts.addEventListener("click", () => {
+      const builtInAccounts = groups.flatMap((group) =>
+        group.people.map(([name, url]) => ({ name, url, group: group.title, source: "built-in" }))
+      );
+      const addedAccounts = customAccounts.map(({ name, url }) => ({
+        name,
+        url,
+        group: "自行新增的帳號",
+        source: "custom"
+      }));
+      downloadAccounts([...builtInAccounts, ...addedAccounts], "all");
+    });
+
+    exportCustomAccounts.addEventListener("click", () => {
+      if (!customAccounts.length) {
+        setMessage("目前沒有可匯出的自訂帳號。", true);
+        return;
+      }
+      downloadAccounts(
+        customAccounts.map(({ name, url }) => ({ name, url })),
+        "custom"
+      );
     });
 
     importAccounts.addEventListener("click", () => importFile.click());
@@ -980,9 +1002,9 @@
           }
         });
 
-        saveCustomAccounts();
+        const saved = saveCustomAccounts();
         render();
-        setMessage(`匯入完成：新增 ${added} 個，略過 ${skipped} 個。`);
+        if (saved) setMessage(`匯入完成：新增 ${added} 個，略過 ${skipped} 個。`);
       } catch (error) {
         setMessage(error.message || "無法讀取這份 JSON 備份。", true);
       } finally {
