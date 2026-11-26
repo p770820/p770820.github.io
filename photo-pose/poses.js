@@ -1,0 +1,51 @@
+// Order within each category matches its numbered photo assets.
+const poseSets = {
+  idol: {
+    label: "偶像系",
+    code: "IDOL",
+    poses: [
+      { name: "雙手開花", instruction: "雙手托在自己下巴兩側，手掌像花瓣打開，一起看鏡頭。" },
+      { name: "鏡像敬禮", instruction: "各用外側的手向鏡頭敬禮，頭稍微往中間傾。" },
+      { name: "隔空擊掌", instruction: "面向彼此，把手掌舉到眼睛高度，中間留一點空隙。" },
+      { name: "愛心接收中", instruction: "一個人手指比小愛心，另一個人攤開手掌假裝接住。" },
+      { name: "同步貓耳", instruction: "手握成拳舉在自己頭頂兩側，像兩對貓耳一起探頭。" },
+      { name: "今天的主角", instruction: "一個人攤手介紹身旁的主角，另一個人對鏡頭揮手。" },
+      { name: "左右導航", instruction: "兩人背向彼此，各自用一隻手指向畫面外側，另一隻手指向搭檔。" },
+      { name: "剪刀石頭布", instruction: "面對面出拳，一個出剪刀、一個出布，把手勢留給鏡頭看。" },
+      { name: "歪頭問號", instruction: "各用一根手指點著自己的臉頰，歪頭擺出疑惑的表情。" },
+      { name: "招牌謝幕", instruction: "並肩稍微鞠躬，雙手向前攤開，像在邀請觀眾一起謝幕。" },
+    ],
+  },
+  date: {
+    label: "女友系",
+    code: "DATE",
+    poses: [
+      { name: "借你的肩", instruction: "並肩靠近，一個人把頭輕靠在另一個人的肩上，一起看鏡頭。" },
+      { name: "額頭碰額頭", instruction: "面對面站近，微微低頭，讓額頭輕碰，眼睛自然閉上。" },
+      { name: "牽手出發", instruction: "一前一後牽著手，走在前面的人回頭笑。" },
+      { name: "背後偷抱", instruction: "一個人從後面輕輕環抱，前面的人把手覆在對方手背上。" },
+      { name: "兩半剛剛好", instruction: "各伸出靠近對方的手臂，在兩人頭頂合成一顆大愛心。" },
+      { name: "轉圈定格", instruction: "一個人高舉牽著的手，另一個人轉半圈，回頭看鏡頭。" },
+      { name: "手臂挽挽", instruction: "一個人輕挽對方手臂，兩人像散步一樣相視而笑。" },
+      { name: "鼻尖問好", instruction: "兩人側身面對面，鼻尖輕碰，一起露出笑容。" },
+      { name: "猜猜我是誰", instruction: "從背後輕輕遮住對方眼睛，被遮住的人把手搭在手腕上。" },
+      { name: "背靠背偷看", instruction: "背靠背坐好，兩人同時轉頭，越過肩膀偷看對方。" },
+    ],
+  },
+  bold: {
+    label: "女優系",
+    code: "BOLD",
+    poses: [
+      { name: "領帶的距離", instruction: "面對面站近，一個人輕捏對方領帶末端，抬眼對視。" },
+      { name: "牆邊對視", instruction: "一個人靠牆，另一個人側身單手撐牆，留出空間，眼神相遇。" },
+      { name: "耳邊悄悄話", instruction: "側身靠近對方耳邊，一手半遮嘴，另一個人直視鏡頭。" },
+      { name: "掌心捧臉", instruction: "一個人雙手輕捧對方的臉，讓兩人側臉與眼神一起入鏡。" },
+      { name: "借位吻", instruction: "兩人側臉慢慢靠近，用手掌擋住嘴唇，留下親吻的想像。" },
+      { name: "探戈停格", instruction: "兩人牽手，一手扶住對方背側，側身微微後傾，定格在舞步裡。" },
+      { name: "回眸搭肩", instruction: "一個人背向鏡頭再回眸，另一個人從側面輕搭肩，靠近看鏡頭。" },
+      { name: "指尖吻手禮", instruction: "一個人抬起對方的手，低頭靠近手背，另一個人望向鏡頭。" },
+      { name: "西裝借我穿", instruction: "一個人站在身後，將外套披在對方肩上，兩人錯開半步看鏡頭。" },
+      { name: "椅背之間", instruction: "一人坐在椅子上，另一人從椅背後俯身靠近，轉頭讓側臉相對。" },
+    ],
+  },
+};

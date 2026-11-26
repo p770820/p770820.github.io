@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#faf8f1">
+  <title>Pose Club｜雙人合照靈感簿</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./poses.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="camera" viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/><path d="M17.5 9.5h1"/></symbol>
+    <symbol id="grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="shuffle" viewBox="0 0 24 24"><path d="M3 6h3c5.5 0 6.5 12 12 12h3m-4-4 4 4-4 4M3 18h3c1.7 0 3-1.2 4.2-3.1M14 8.8C15.3 6.9 16.6 6 18 6h3m-4-4 4 4-4 4"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="m12 2 2.8 6.4 7 .8-5.2 4.8 1.4 7-6-3.6L6 21l1.4-7-5.2-4.8 7-.8z"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21S2.5 15 2.5 8.6C2.5 3 9.4 2 12 7c2.6-5 9.5-4 9.5 1.6C21.5 15 12 21 12 21z"/></symbol>
+    <symbol id="flame" viewBox="0 0 24 24"><path d="M13 2c1 5-3 6-2 10 2-1 3.5-3 4-5 4 4 6 8 3.5 12-3 5-12 4-14-2.5C3 12 6 9 8 7c-.5 3 0 4 1 5 0-5 2-6 4-10z"/></symbol>
+  </svg>
+  <header class="topbar">
+    <div class="bar-inner">
+      <a class="brand" href="#top" aria-label="Pose Club 頁首"><span class="brand-mark"><svg><use href="#camera"/></svg></span>Pose Club<span class="brand-dot">.</span></a>
+      <a class="nav-link" href="#library"><svg><use href="#grid"/></svg>姿勢圖鑑</a>
+    </div>
+  </header>
+  <main id="top">
+    <section aria-labelledby="page-title">
+      <div class="intro">
+        <h1 id="page-title">雙人合照<span>靈感簿</span><i class="spark" aria-hidden="true">✦</i></h1>
+        <p>選個尺度，抽一張姿勢卡，跟著照片一起擺。</p>
+      </div>
+      <div class="studio" id="studio">
+        <div class="photo-stage">
+          <div class="photo-print">
+            <div class="tape" aria-hidden="true"></div>
+            <img id="feature-image" src="./assets/idol-01.webp" alt="兩人各用雙手托在下巴兩側，一起看鏡頭。" width="840" height="840" fetchpriority="high">
+            <div class="print-footer"><span>Pose Club.</span><span id="print-code">IDOL / 01</span></div>
+          </div>
+        </div>
+        <div class="controls">
+          <fieldset><legend>選擇合照尺度</legend>
+            <div class="filters">
+              <button type="button" data-category="idol" aria-pressed="true"><svg><use href="#star"/></svg>偶像</button>
+              <button type="button" data-category="date" aria-pressed="false"><svg><use href="#heart"/></svg>女友</button>
+              <button type="button" data-category="bold" aria-pressed="false"><svg><use href="#flame"/></svg>女優</button>
+            </div>
+          </fieldset>
+          <div class="pose-info" aria-live="polite" aria-atomic="true">
+            <div class="pose-meta"><span id="pose-tag">偶像系</span><span id="pose-number">POSE No. 01</span></div>
+            <h2 id="pose-name">雙手開花</h2>
+            <p id="pose-instruction">雙手托在自己下巴兩側，手掌像花瓣打開，一起看鏡頭。</p>
+          </div>
+          <button id="draw" type="button"><svg><use href="#shuffle"/></svg>隨機抽姿勢</button>
+        </div>
+      </div>
+    </section>
+    <section id="library" aria-labelledby="library-title">
+      <div class="library-heading"><h2 id="library-title"><svg><use href="#grid"/></svg>姿勢圖鑑</h2><span id="library-count">偶像系 / 10 張</span></div>
+      <div id="gallery"></div>
+    </section>
+    <noscript>請開啟瀏覽器的 JavaScript 來切換尺度與隨機抽姿勢。</noscript>
+  </main>
+</body>
+</html>
